@@ -1,4 +1,3 @@
-
 public class Staff {
 	private String ID, username;
 	void sendLogisticReq()	//send logistic requirement to supervisor

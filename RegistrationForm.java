@@ -7,8 +7,7 @@ import java.io.IOException;
 
 import javax.swing.*;
 import java.util.*;
-
-public class RegistrationForm extends JFrame {	
+public class RegistrationForm extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private String department,type;
@@ -97,39 +96,7 @@ public class RegistrationForm extends JFrame {
 	        getContentPane().add(l8);
 	        getContentPane().add(Submit);
 	        getContentPane().add(Clear);
-	        
-	        /*DefaultListModel listModel = new DefaultListModel<String>();
-	        listModel.addElement("Electricity");
-	        listModel.addElement("HVAC");
-	        listModel.addElement("Audio/Video");
-	        listModel.addElement("Security");
-	        listModel.addElement("Housekeeping");
-
-	        list = new JList(listModel);
-	        list.setBounds(363, 295, 77, -17);
-	        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-	        list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
-	        list.setVisibleRowCount(6);
-	        list.setFixedCellHeight(15);
-	        list.setFixedCellWidth(100);
-	        list.setVisible(true);
-	        getContentPane().add(list);*/
-	        
-	       /* DefaultListModel<String> listModel = new DefaultListModel<>();
-	        listModel.addElement("USA");
-	        listModel.addElement("India");
-	        listModel.addElement("Vietnam");
-	        listModel.addElement("Canada");
-	        listModel.addElement("Denmark");
-	        listModel.addElement("France");
-	        listModel.addElement("Great Britain");
-	        listModel.addElement("Japan");
-	 
-	        JList<String> countryList = new JList<String>(listModel);
-	        countryList.setBounds(363, 295, 77, -17);
-	        getContentPane().add(countryList);*/
-	       
-	        JButton btnStaff = new JButton("Staff");
+		    JButton btnStaff = new JButton("Staff");
 	        JButton btnSupervisor = new JButton("Supervisor");
 	        btnStaff.setBounds(618, 314, 89, 23);
 	        btnStaff.addActionListener (new ActionListener(){
@@ -161,6 +128,5 @@ public class RegistrationForm extends JFrame {
 	        lblNewLabel = new JLabel("");
 	        lblNewLabel.setBounds(661, 496, 46, 14);
 	        contentPane.add(lblNewLabel);
-	        //list.addListSelectionListener(...);
 	}
 }
