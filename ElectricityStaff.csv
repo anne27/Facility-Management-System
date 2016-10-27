@@ -1,0 +1,4 @@
+username,password,userID,name,DOB,address,tasks,task_array,leave_StartDate,leave_EndDate,leave_Reason,leave_ToWhom,status
+ram,ram123,EL109,Ram Kumar,27/03/1976,Green Street Kolkata,0,[],0,0,0,0,available
+shyam,shyam123,EL128,Shyam Kumar,27/01/1996,A50 Punjabi Bagh,0,[],0,0,0,0,available
+ganesh,ganesh123,EL989,Ganesh Chauhan,8/02/1974,65B Moolchand,0,[],0,0,0,0,available
