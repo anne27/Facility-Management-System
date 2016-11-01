@@ -1,0 +1,4 @@
+username,password,userID,name,department,DOB,address,staff,staff_array,tasks,task_array,leave_StartDate,leave_EndDate,leave_Reason,leave_ToWhom,pendingLeaves,pendingLeaves_array
+ryan,ryan123,SU209,Ryan Williams,Electricity,1/1/1975,23-A Govindpuri,3,[ram-shyam-ganesh],0,[],0,0,0,0,0,[]
+megan,megan123,SU907,Megan Jenner,HVAC,2/3/1970,91 Govindpuri,1,[shiv],0,[],0,0,0,0,0,[]
+lucas,lucas123,SU205,Lucas Miller,Audio/Video,4/8/1969,55A Rajouri Garden,2,[indu-durga],0,[],0,0,0,0,0,[]
