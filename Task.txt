@@ -1,1 +1,1 @@
-TaskID,status
+TaskID,assignedto,type,department,status,deadline

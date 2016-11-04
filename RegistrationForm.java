@@ -16,7 +16,7 @@ public class RegistrationForm extends JFrame {
 	private JButton Submit, Clear;
 	private JPasswordField Password;
 	private JLabel lblRegistration,lblNewLabel;
-
+	private JComboBox jcb;
 	public RegistrationForm() {
 	this.setVisible(true);
        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -30,13 +30,19 @@ public class RegistrationForm extends JFrame {
 	        l5 = new JLabel("DOB:");
 	        l6 = new JLabel("Address:");
 	        l7 = new JLabel("Department:");
-	        l8 = new JLabel("Type:"); 
+	        l8 = new JLabel("Type:");
+		    jcb = new JComboBox();
 	        Name = new JTextField();
 	        Username = new JTextField();
 	        Password = new JPasswordField();
 	        DOB = new JTextField();
 	        Address = new JTextField();	 
 	        Submit = new JButton("Submit");
+			jcb.addItem("Electricity");
+			jcb.addItem("HVAC");
+			jcb.addItem("Audio/Video");
+			jcb.addItem("HouseKeeping");
+			jcb.addItem("Security");
 	        Submit.addActionListener (new ActionListener(){
 				public void actionPerformed(ActionEvent e)
 				{
@@ -74,6 +80,7 @@ public class RegistrationForm extends JFrame {
 	        l5.setBounds(386, 193, 200, 30);
 	        l6.setBounds(386, 234, 200, 30);
 	        l7.setBounds(386, 272, 200, 30);
+			jcb.setBounds(618,272,200,30);
 	        l8.setBounds(386, 313, 200, 30);
 	        Name.setBounds(618, 70, 200, 30);
 	        Username.setBounds(618, 111, 200, 30);
@@ -96,6 +103,7 @@ public class RegistrationForm extends JFrame {
 	        getContentPane().add(l8);
 	        getContentPane().add(Submit);
 	        getContentPane().add(Clear);
+			getContentPane().add(jcb);
 		    JButton btnStaff = new JButton("Staff");
 	        JButton btnSupervisor = new JButton("Supervisor");
 	        btnStaff.setBounds(618, 314, 89, 23);
@@ -119,13 +127,11 @@ public class RegistrationForm extends JFrame {
 				}
 				});
 	        contentPane.add(btnSupervisor);
-	        
-	        lblRegistration = new JLabel("Registration");
+			lblRegistration = new JLabel("Registration");
 	        lblRegistration.setFont(new Font("Serif", Font.PLAIN, 38));
 	        lblRegistration.setBounds(575, 11, 212, 48);
 	        contentPane.add(lblRegistration);
-	        
-	        lblNewLabel = new JLabel("");
+			lblNewLabel = new JLabel("");
 	        lblNewLabel.setBounds(661, 496, 46, 14);
 	        contentPane.add(lblNewLabel);
 	}

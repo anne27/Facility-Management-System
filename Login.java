@@ -10,13 +10,16 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Scanner;
 
-public class Login extends JFrame {
-	private String user ,passw;
+	public class Login extends JFrame 
+	{
+	public static String user,depa;
+	public String passw;
 	private JPanel contentPane;
 	private JTextField user_name;
 	private JPasswordField pswd;
-
-	public Login() {
+	
+	public Login() 
+	{
 		this.setVisible(true);
 	       this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -50,9 +53,8 @@ public class Login extends JFrame {
 		pswd.setBounds(709, 214, 86, 20);
 		contentPane.add(pswd);
 		pswd.setColumns(10);
-
 		JLabel label = new JLabel("");
-		label.setBounds(658, 331, 46, 14);
+		label.setBounds(543, 322, 276, 28);
 		contentPane.add(label);
 
 		JButton Register = new JButton("Register");
@@ -66,57 +68,69 @@ public class Login extends JFrame {
 				dispose();
 			}
 		});
-
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setBounds(636, 350, 89, 23);
 		contentPane.add(btnLogin);
-		btnLogin.addActionListener (new ActionListener(){
-			AdminHome a;
-			public void actionPerformed(ActionEvent e)
-			{
-
-				if (user_name.getText().isEmpty())
-					label.setText("Username not filled");
-				else if(String.valueOf(pswd.getPassword()).isEmpty())
-					label.setText("Password not filled");
-				else
-				{
-
-					try
-					{
-					label.setText("");
-					user=user_name.getText();
-					passw=String.valueOf(pswd.getPassword());
-					InputStream in = new FileInputStream("User_Password.txt");
-					Scanner sc=new Scanner(in);
-					int flag=0;
-
-							while(sc.hasNextLine()) {
-						String x = sc.nextLine();
-						String split[] = x.split(",");
-
-						if(split[0].equals(user));
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdminHome a;
+				StaffHome s;
+				SupervisorHome su;
+				String type;
+					if (user_name.getText().isEmpty())
+						label.setText("Username not filled");
+					else if(String.valueOf(pswd.getPassword()).isEmpty())
+						label.setText("Password not filled");
+					else
+					{	
+						try
 						{
-							flag=1;
-							if (split[1].equals(passw)) {
-								a = new AdminHome(user);
-								a.setVisible(true);
-								dispose();
-							}
+						label.setText("");
+						user=user_name.getText();
+						passw=String.valueOf(pswd.getPassword());
+						InputStream in = new FileInputStream("User_Password.txt");
+						Scanner sc=new Scanner(in);
+						int flag=0;
+							while(sc.hasNextLine()) 
+							{
+							String x = sc.nextLine();
+							String split[] = x.split(",");
+							if(split[0].equals(user));
+							{	
+								flag=1;
+								if (split[1].equals(passw))
+								{
+									depa=split[3];
+									type=split[2];
+									if (type.equals("Admin"))
+									{
+									a = new AdminHome(user);
+									a.setVisible(true);
+									dispose();
+									}
+									else if (type.equals("Staff"))
+									{
+										s=new StaffHome(user);
+										s.setVisible(true);
+										dispose();
+									}
+									else if (type.equals("Supervisor"))
+									{
+										su=new SupervisorHome(user);
+										su.setVisible(true);
+										dispose();
+									}
+								}
 								else
-								label.setText("Incorrect Password");
+									label.setText("Incorrect Password");
+							}
+						if(flag==0)
+							label.setText("No such user exits");	
 						}
+						}
+						catch(Exception e1){}
 					}
-					if(flag==0)
-					label.setText("No such user exits");
-				
-				}
-				catch(Exception e1){}
-				}
 			}
 		});
-
-
 	}
-
-}
+	}
