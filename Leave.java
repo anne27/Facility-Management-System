@@ -1,3 +1,5 @@
+//This class maintains all the leave requests
+
 public class Leave {
 	String toWhom,fromWhom,reason,dateRange,status;
 	void Leave(String toWhom, String fromWhom, String reason, String dateRange, String status)
