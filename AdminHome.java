@@ -1,3 +1,4 @@
+package ProjectFMS;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -25,7 +26,15 @@ public class AdminHome extends JFrame {
 		jtp.addTab("<html><body><table width='160'><tr><td height='40'>Reports</td></tr></table></body></html>", new Reports());
 		jtp.addTab("<html><body><table width='160'><tr><td height='40'>Requests</td></tr></table></body></html>", new Requests());
 		ClockLabel clock = new ClockLabel();
-		clock.setBounds(1000,0,200,50);
+		clock.setBounds(1050,0,200,50);
+		JButton Logout=new JButton("LOGOUT");
+		Logout.setBounds(900,0,100,50);
+		Logout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		add(Logout);
 		add(clock);
 		add(jtp);
 	}
