@@ -32,6 +32,9 @@ public class StaffHome extends JFrame {
         Logout.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
+                WelcomeScreen2 frame = new WelcomeScreen2();
+                frame.setVisible(true);
+                frame.start();
             }
         });
         add(Logout);

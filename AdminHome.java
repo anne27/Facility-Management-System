@@ -31,7 +31,9 @@ public class AdminHome extends JFrame {
 		Logout.setBounds(900,0,100,50);
 		Logout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
+				dispose(); WelcomeScreen2 frame = new WelcomeScreen2();
+				frame.setVisible(true);
+				frame.start();
 			}
 		});
 		add(Logout);
