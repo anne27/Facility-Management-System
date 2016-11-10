@@ -1,4 +1,7 @@
-	public class Staff {
+import java.io.File;
+import java.io.FileWriter;
+
+public class Staff {
 	public String ID, username,department,name,DOB,address,status;
 	public Supervisor department_supervisor;
 	public int no_of_tasks=0;
@@ -72,9 +75,20 @@
 		this.ID=iD2;
 	}
 
-	void sendLogisticReq()	//send logistic requirement to supervisor
+	void sendLogisticReq(String text, String selecteditem, Staff staff)	//send logistic requirement to supervisor
 	{
 		
+		File myFile = new File("inventoryreq.csv");
+		try
+		{
+			FileWriter fileWriter = new FileWriter(myFile,true);
+            StringBuilder string1=new StringBuilder();
+            string1.append("\r\n"+text+","+selecteditem+","+staff.getID()+","+staff.getDepartment()+","+"Unapproved");
+            fileWriter.write(string1.toString());
+            System.out.println(string1);
+            fileWriter.close();
+		}
+		catch(Exception e){}
 	}
 	void sendLeave(Leave l)
 	{
@@ -86,10 +100,13 @@
 	}
 	void generateTaskReport(Task task)
 	{
-		
+		if (task.status=="COMPLETE")
+		{
+			
+		}
 	}
 	public void updateStatus(String status)
 	{
-		
+		this.status=status;
 	}
 }

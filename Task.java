@@ -1,6 +1,9 @@
+import java.util.*;
+
 public class Task {
-	public int deadline,taskID;
-	private String status="NOT STARTED";	// NOT STARTED(default),ONGOING,COMPLETE	
+	public int taskID;
+	public Date deadline;
+	public String status="NOT STARTED";	// NOT STARTED(default),ONGOING,COMPLETE	
 	void setStatus(String s)
 	{
 		this.status=s;
@@ -9,11 +12,11 @@ public class Task {
 	{
 		return this.status;
 	}
-	void setDeadline(int s)
+	void setDeadline(Date s)
 	{
 		this.deadline=s;
 	}
-	int getDeadline()
+	Date getDeadline()
 	{
 		return this.deadline;
 	}
@@ -21,8 +24,11 @@ public class Task {
 	{
 		if (status=="COMPLETE")
 		{
+			
 			//generate report with system generated timestamps
+			
 		}
 	}
+	
 	
 }
