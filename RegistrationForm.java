@@ -1,3 +1,8 @@
+package ProjectFMS;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,9 +15,10 @@ import java.util.*;
 public class RegistrationForm extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	public JDatePickerImpl datePicker;
 	private String department,type;
-	private JLabel l2, l3, l4, l5, l6, l7, l8;
-	private JTextField Name, Username, Address, DOB;
+	private JLabel l2, l3, l4, l5,l6, l7, l8;
+	private JTextField Name, Username, Address;
 	private JButton Submit, Clear;
 	private JPasswordField Password;
 	private JLabel lblRegistration,lblNewLabel;
@@ -35,8 +41,7 @@ public class RegistrationForm extends JFrame {
 	        Name = new JTextField();
 	        Username = new JTextField();
 	        Password = new JPasswordField();
-	        DOB = new JTextField();
-	        Address = new JTextField();	 
+	        Address = new JTextField();
 	        Submit = new JButton("Submit");
 			jcb.addItem("Electricity");
 			jcb.addItem("HVAC");
@@ -55,7 +60,7 @@ public class RegistrationForm extends JFrame {
 				        {
 				            FileWriter fileWriter = new FileWriter(myFile,true);
 				            StringBuilder string1=new StringBuilder();
-			                string1.append("\r\n"+Username.getText()+","+String.valueOf(Password.getPassword())+","+Name.getText()+","+DOB.getText()+","+Address.getText()+","+"department"+","+type);				            fileWriter.write(string1.toString());
+			                string1.append("\r\n"+Username.getText()+","+String.valueOf(Password.getPassword())+","+Name.getText()+","+datePicker.getJFormattedTextField().getText()+","+Address.getText()+","+"department"+","+type);				            fileWriter.write(string1.toString());
 				            System.out.println(string1);
 				            fileWriter.close();
 				            dispose();
@@ -78,14 +83,20 @@ public class RegistrationForm extends JFrame {
 	        l3.setBounds(386, 111, 200, 30);
 	        l4.setBounds(386, 152, 200, 30);
 	        l5.setBounds(386, 193, 200, 30);
-	        l6.setBounds(386, 234, 200, 30);
+		    UtilDateModel model = new UtilDateModel();
+		    Properties p = new Properties();
+		    p.put("text.today", "Today");
+		    p.put("text.month", "Month");
+		    p.put("text.year", "Year");
+		    JDatePanelImpl datePanel = new JDatePanelImpl(model,p);
+		    datePicker = new JDatePickerImpl(datePanel,new DateLabelFormatter());
 	        l7.setBounds(386, 272, 200, 30);
 			jcb.setBounds(618,272,200,30);
 	        l8.setBounds(386, 313, 200, 30);
 	        Name.setBounds(618, 70, 200, 30);
 	        Username.setBounds(618, 111, 200, 30);
 	        Password.setBounds(618, 152, 200, 30);
-	        DOB.setBounds(618, 193, 200, 30);
+	        datePicker.setBounds(618, 193, 200, 30);
 	        Address.setBounds(618, 234, 200, 30);
 	        Submit.setBounds(568, 417, 100, 30);
 	        Clear.setBounds(678, 417, 100, 30);
@@ -96,7 +107,7 @@ public class RegistrationForm extends JFrame {
 	        getContentPane().add(l4);
 	        getContentPane().add(Password);
 	        getContentPane().add(l5);
-	        getContentPane().add(DOB);
+	        getContentPane().add(datePicker);
 	        getContentPane().add(l6);
 	        getContentPane().add(Address);
 	        getContentPane().add(l7);
