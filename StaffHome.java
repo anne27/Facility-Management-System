@@ -1,4 +1,3 @@
-package ProjectFMS;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -15,7 +14,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
-import javafx.scene.control.DatePicker;
+//import javafx.scene.control.DatePicker;
 import org.jdatepicker.impl.DateComponentFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
@@ -50,6 +49,7 @@ public class StaffHome extends JFrame {
         add(Logout);
         add(clock);
         add(jtp);
+        
     }
     class ClockLabel extends JLabel implements ActionListener {
 
@@ -66,14 +66,19 @@ public class StaffHome extends JFrame {
 
     class Home extends JPanel {
         public Home() {
-            JButton b1 = new JButton("New York");
-            add(b1);
-            JButton b2 = new JButton("London");
-            add(b2);
-            JButton b3 = new JButton("Hong Kong");
-            add(b3);
-            JButton b4 = new JButton("Tokyo");
-            add(b4);
+        	JLabel l1=new JLabel("Details:");
+        	JLabel l2=new JLabel("Name: ");
+        	JLabel l3=new JLabel("Username: ");
+        	JLabel l4=new JLabel("DOB: ");
+        	JLabel l5=new JLabel("Department: ");
+        	JLabel l6=new JLabel("Status: ");
+        	add(l1);
+        	add(l2);
+        	add(l3);
+        	add(l4);
+        	add(l5);
+        	add(l6);
+            
         }
     }
 
@@ -81,12 +86,7 @@ public class StaffHome extends JFrame {
 
         public Staff1() {
 
-            JCheckBox cb1 = new JCheckBox("Red");
-            add(cb1);
-            JCheckBox cb2 = new JCheckBox("Green");
-            add(cb2);
-            JCheckBox cb3 = new JCheckBox("Blue");
-            add(cb3);
+            
         }
     }
     class Logistics1 extends JPanel {
