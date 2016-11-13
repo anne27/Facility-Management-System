@@ -1,4 +1,3 @@
-package ProjectFMS;
 
 import javax.swing.*;
 import java.text.ParseException;
