@@ -110,7 +110,7 @@ import java.util.Scanner;
 									}
 									else if (type.equals("Staff"))
 									{
-										s=new StaffHome(user);
+										s=new StaffHome(user,depa);
 										s.setVisible(true);
 										dispose();
 									}
