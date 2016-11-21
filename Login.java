@@ -14,6 +14,8 @@ import java.util.Scanner;
 	public class Login extends JFrame 
 	{
 	Staff staff_login;
+	Supervisor supervisor_login;
+	Admin admin_login;
 	public static String user,depa;
 	public String passw;
 	private JPanel contentPane;
@@ -106,7 +108,8 @@ import java.util.Scanner;
 									type=split[2];
 									if (type.equals("Admin"))
 									{
-									a = new AdminHome(user);
+									find_admin(user,depa);
+									a = new AdminHome(user,depa,admin_login);
 									a.setVisible(true);
 									dispose();
 									}
@@ -119,7 +122,8 @@ import java.util.Scanner;
 									}
 									else if (type.equals("Supervisor"))
 									{
-										su=new SupervisorHome(user);
+										find_supervisor(user, depa);
+										su=new SupervisorHome(user,depa,supervisor_login);
 										su.setVisible(true);
 										dispose();
 									}
@@ -152,6 +156,42 @@ import java.util.Scanner;
 				staff_login=new Staff(split[0],split[2],depa,split[3],split[4],split[5],split[12]);
 			}
 			}
+		}
+			catch (FileNotFoundException e) {
+		}
+		
+	}
+	
+	private void find_supervisor(String user, String depa) {
+		try {
+			InputStream in=new FileInputStream("Supervisor.csv");
+			Scanner sc=new Scanner(in);
+			sc.nextLine();
+			while(sc.hasNextLine()) 
+			{
+			String x=sc.nextLine();
+			String split[] = x.split(",");
+			if(split[0].equals(user)&&split[4].equals(depa))
+			{
+				supervisor_login=new Supervisor(split[2],split[0],split[3],depa,split[5],split[6]);
+			}
+			}
+		}
+			catch (FileNotFoundException e) {
+		}
+		
+	}
+	
+
+	private void find_admin(String user, String depa) {
+		try {
+			InputStream in=new FileInputStream("Admin.csv");
+			Scanner sc=new Scanner(in);
+			sc.nextLine();
+			String x=sc.nextLine();
+			String split[] = x.split(",");
+			if(split[1].equals(user)&&split[4].equals(depa));
+			admin_login=new Admin(split[0],split[1],split[2],split[3],depa,split[5]);
 		}
 			catch (FileNotFoundException e) {
 		}
