@@ -7,11 +7,13 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Scanner;
 
 	public class Login extends JFrame 
 	{
+	Staff staff_login;
 	public static String user,depa;
 	public String passw;
 	private JPanel contentPane;
@@ -110,7 +112,8 @@ import java.util.Scanner;
 									}
 									else if (type.equals("Staff"))
 									{
-										s=new StaffHome(user,depa);
+										find_staff(user, depa);
+										s=new StaffHome(user,depa,staff_login);
 										s.setVisible(true);
 										dispose();
 									}
@@ -132,5 +135,26 @@ import java.util.Scanner;
 					}
 			}
 		});
+	}
+
+	private void find_staff(String user, String depa) {
+		try {
+			InputStream in=new FileInputStream(depa+"Staff.csv");
+			Scanner sc=new Scanner(in);
+			sc.nextLine();
+			while(sc.hasNextLine()) 
+			{
+			String x=sc.nextLine();
+			String split[] = x.split(",");
+			if(split[0].equals(user))
+			{
+				//	public Staff(String username, String ID, String department, String name, String DOB, String address, String status){
+				staff_login=new Staff(split[0],split[2],depa,split[3],split[4],split[5],split[12]);
+			}
+			}
+		}
+			catch (FileNotFoundException e) {
+		}
+		
 	}
 	}
