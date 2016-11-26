@@ -3,6 +3,9 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,7 +26,8 @@ import org.jdatepicker.impl.UtilDateModel;
 public class StaffHome extends JFrame {
     public Staff staff;
     public String username;
-    public  StaffHome(String user,String depa) {
+    public  StaffHome(String user,String depa, Staff staff) {
+    	this.staff=staff;
         this.setVisible(true);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,9 +52,9 @@ public class StaffHome extends JFrame {
         });
         add(Logout);
         add(clock);
-        add(jtp);
-        
+        add(jtp);    
     }
+    
     class ClockLabel extends JLabel implements ActionListener {
 
         public ClockLabel() {
@@ -66,12 +70,12 @@ public class StaffHome extends JFrame {
 
     class Home extends JPanel {
         public Home() {
-        	JLabel l1=new JLabel("Details:");
-        	JLabel l2=new JLabel("Name: ");
-        	JLabel l3=new JLabel("Username: ");
-        	JLabel l4=new JLabel("DOB: ");
-        	JLabel l5=new JLabel("Department: ");
-        	JLabel l6=new JLabel("Status: ");
+        	JLabel l1=new JLabel("Details: ");
+        	JLabel l2=new JLabel("Name: "+staff.getName());
+        	JLabel l3=new JLabel("Username: "+staff.getUsername());
+        	JLabel l4=new JLabel("DOB: "+staff.getDOB());
+        	JLabel l5=new JLabel("Department: "+staff.department);
+        	JLabel l6=new JLabel("Status: "+staff.getStatus());
         	add(l1);
         	add(l2);
         	add(l3);
@@ -83,12 +87,11 @@ public class StaffHome extends JFrame {
     }
 
     class Staff1 extends JPanel {
-
         public Staff1() {
-
-            
+        	
         }
     }
+    
     class Logistics1 extends JPanel {
         public Logistics1() {
             JLabel label=new JLabel("Send Logistics Requests to Department Supervisor");
@@ -113,11 +116,22 @@ public class StaffHome extends JFrame {
                 public void actionPerformed(ActionEvent a)
                 {
                     if (t1.getText()=="")
-                        error.setText("Please enter the requirement");
+                        error.setText("Please enter the requirement.");
                     else
                     {
                         staff.sendLogisticReq(t1.getText(), jcb.getSelectedItem().toString(), staff);
                         //Write to file inventoryreq.csv
+                        try {
+							FileWriter in = new FileWriter("inventoryreq",true);
+							StringBuilder string1=new StringBuilder();
+							string1.append("\r\n"+t1.getText()+","+jcb.getSelectedItem().toString()+","+staff.getID()+","+staff.getDepartment()+","+"Unapproved");
+							in.write(string1.toString());
+							in.close();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+                        
                     }
                 }
             });
@@ -199,4 +213,3 @@ public class StaffHome extends JFrame {
         }
     }
 }
-
