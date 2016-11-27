@@ -13,7 +13,9 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 public class AdminHome extends JFrame {
-	public  AdminHome(String user) {
+	public Admin boss;
+	public  AdminHome(String user,String depa,Admin adm) {
+		this.boss=adm;
 		this.setVisible(true);
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,7 +27,17 @@ public class AdminHome extends JFrame {
 		jtp.addTab("<html><body><table width='160'><tr><td height='40'>Reports</td></tr></table></body></html>", new Reports());
 		jtp.addTab("<html><body><table width='160'><tr><td height='40'>Requests</td></tr></table></body></html>", new Requests());
 		ClockLabel clock = new ClockLabel();
-		clock.setBounds(1000,0,200,50);
+		clock.setBounds(1050,0,200,50);
+		JButton Logout=new JButton("LOGOUT");
+		Logout.setBounds(900,0,100,50);
+		Logout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose(); WelcomeScreen2 frame = new WelcomeScreen2();
+				frame.setVisible(true);
+				frame.start();
+			}
+		});
+		add(Logout);
 		add(clock);
 		add(jtp);
 	}
@@ -44,21 +56,25 @@ public class AdminHome extends JFrame {
 
 	class Home extends JPanel {
 		public Home() {
-			JButton b1 = new JButton("New York");
-			add(b1);
-			JButton b2 = new JButton("London");
-			add(b2);
-			JButton b3 = new JButton("Hong Kong");
-			add(b3);
-			JButton b4 = new JButton("Tokyo");
-			add(b4);
+			JLabel l1=new JLabel("Details: ");
+			JLabel l2=new JLabel("Name: "+boss.getName());
+			JLabel l3=new JLabel("Username: "+boss.getUsername());
+			JLabel l4=new JLabel("DOB: "+boss.getDOB());
+			JLabel l5=new JLabel("Department: "+boss.getDepartment());
+			JLabel l6=new JLabel("Department: "+boss.getID());
+			add(l1);
+			add(l2);
+			add(l3);
+			add(l4);
+			add(l5);
+			add(l6);
 		}
 	}
 
 	class Staff1 extends JPanel {
 
 		public Staff1() {
-
+			
 			JCheckBox cb1 = new JCheckBox("Red");
 			add(cb1);
 			JCheckBox cb2 = new JCheckBox("Green");
@@ -67,10 +83,10 @@ public class AdminHome extends JFrame {
 			add(cb3);
 		}
 	}
+	
 	class Logistics1 extends JPanel {
-
 		public Logistics1() {
-
+			
 			JCheckBox cb1 = new JCheckBox("Red");
 			add(cb1);
 			JCheckBox cb2 = new JCheckBox("Green");
@@ -79,10 +95,9 @@ public class AdminHome extends JFrame {
 			add(cb3);
 		}
 	}
+	
 	class Reports extends JPanel {
-
 		public Reports() {
-
 			JCheckBox cb1 = new JCheckBox("Red");
 			add(cb1);
 			JCheckBox cb2 = new JCheckBox("Green");
@@ -92,14 +107,19 @@ public class AdminHome extends JFrame {
 		}
 	}
 	class Requests extends JPanel {
-
 		public Requests() {
+			//JFrame frame = new JFrame("TableRenderDemo");
+	        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-			JComboBox jcb = new JComboBox();
-			jcb.addItem("Vanilla");
-			jcb.addItem("Chocolate");
-			jcb.addItem("Strawberry");
-			add(jcb);
+	        //Create and set up the content pane.
+	        TableRenderDemo newContentPane = new TableRenderDemo();
+	        newContentPane.setOpaque(true); //content panes must be opaque
+	        add(newContentPane);
+	        //frame.setContentPane(newContentPane);
+
+	        //Display the window.
+	        //frame.pack();
+	        //frame.setVisible(true);
 		}
 	}
 }
