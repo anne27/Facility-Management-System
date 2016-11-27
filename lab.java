@@ -3,6 +3,7 @@
 
 class Vehicle
 {
+	private String val;
 	String modelName, ownerName;
 	int numberOfWheels;
 	Policy p;
